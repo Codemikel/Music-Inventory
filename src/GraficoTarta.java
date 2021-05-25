@@ -3,19 +3,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 
 public class GraficoTarta extends JFrame {
     private JPanel contentPane;
-    private JTextField tf1;
-    private JTextField tf2;
-    private JTextField tf3;
-    private JTextField tf4;
-    private JTextField tf5;
-    private JTextField tf6;
-    private JTextField tf7;
-    private JTextField tf8;
-    private JTextField tf9;
-    private JTextField tf10;
+    private JTextField tf[] = new JTextField[5];
+    private JTextField stock[] = new JTextField[5];
     private boolean bandera = false;
 
     public static void main(String[] args) {
@@ -112,55 +105,55 @@ public class GraficoTarta extends JFrame {
         resumen.setBounds(650, 329, 100, 14);
         contentPane.add(resumen);
 
-        tf1 = new JTextField();
-        tf1.setBounds(117, 200, 86, 20);
-        contentPane.add(tf1);
-        tf1.setColumns(10);
+        stock[0] = new JTextField();
+        stock[0].setBounds(117, 200, 86, 20);
+        contentPane.add(stock[0]);
+        stock[0].setColumns(10);
 
-        tf2 = new JTextField();
-        tf2.setBounds(117, 230, 86, 20);
-        contentPane.add(tf2);
-        tf2.setColumns(10);
+        tf[0] = new JTextField();
+        tf[0].setBounds(117, 230, 86, 20);
+        contentPane.add(tf[0]);
+        tf[0].setColumns(10);
 
-        tf3 = new JTextField();
-        tf3.setBounds(421, 200, 86, 20);
-        contentPane.add(tf3);
-        tf3.setColumns(10);
+        stock[1] = new JTextField();
+        stock[1].setBounds(421, 200, 86, 20);
+        contentPane.add(stock[1]);
+        stock[1].setColumns(10);
 
-        tf4 = new JTextField();
-        tf4.setBounds(421, 230, 86, 20);
-        contentPane.add(tf4);
-        tf4.setColumns(10);
+        tf[1] = new JTextField();
+        tf[1].setBounds(421, 230, 86, 20);
+        contentPane.add(tf[1]);
+        tf[1].setColumns(10);
 
-        tf5 = new JTextField();
-        tf5.setBounds(725, 200, 86, 20);
-        contentPane.add(tf5);
-        tf5.setColumns(10);
+        stock[2] = new JTextField();
+        stock[2].setBounds(725, 200, 86, 20);
+        contentPane.add(stock[2]);
+        stock[2].setColumns(10);
 
-        tf6 = new JTextField();
-        tf6.setBounds(725, 230, 86, 20);
-        contentPane.add(tf6);
-        tf6.setColumns(10);
+        tf[2] = new JTextField();
+        tf[2].setBounds(725, 230, 86, 20);
+        contentPane.add(tf[2]);
+        tf[2].setColumns(10);
 
-        tf7 = new JTextField();
-        tf7.setBounds(117, 500, 86, 20);
-        contentPane.add(tf7);
-        tf7.setColumns(10);
+        stock[3] = new JTextField();
+        stock[3].setBounds(117, 500, 86, 20);
+        contentPane.add(stock[3]);
+        stock[3].setColumns(10);
 
-        tf8 = new JTextField();
-        tf8.setBounds(117, 530, 86, 20);
-        contentPane.add(tf8);
-        tf8.setColumns(10);
+        tf[3] = new JTextField();
+        tf[3].setBounds(117, 530, 86, 20);
+        contentPane.add(tf[3]);
+        tf[3].setColumns(10);
 
-        tf9 = new JTextField();
-        tf9.setBounds(421, 500, 86, 20);
-        contentPane.add(tf9);
-        tf9.setColumns(10);
+        stock[4] = new JTextField();
+        stock[4].setBounds(421, 500, 86, 20);
+        contentPane.add(stock[4]);
+        stock[4].setColumns(10);
 
-        tf10 = new JTextField();
-        tf10.setBounds(421, 530, 86, 20);
-        contentPane.add(tf10);
-        tf10.setColumns(10);
+        tf[4] = new JTextField();
+        tf[4].setBounds(421, 530, 86, 20);
+        contentPane.add(tf[4]);
+        tf[4].setColumns(10);
 
         JButton btnGraficar = new JButton("Graficar");
 
@@ -181,9 +174,9 @@ public class GraficoTarta extends JFrame {
 
             //Gráfico de Guitarras
 
-            String s1 = tf1.getText();
+            String s1 = stock[0].getText();
 
-            String s2 = tf2.getText();
+            String s2 = tf[0].getText();
 
             int v1 = Integer.parseInt(s1);
 
@@ -215,9 +208,9 @@ public class GraficoTarta extends JFrame {
 
             //Grafico de Bajos
 
-            String s3 = tf3.getText();
+            String s3 = stock[1].getText();
 
-            String s4 = tf4.getText();
+            String s4 = tf[1].getText();
 
             int v3 = Integer.parseInt(s3);
 
@@ -248,9 +241,9 @@ public class GraficoTarta extends JFrame {
 
             //Gráfico violines
 
-            String s5 = tf5.getText();
+            String s5 = stock[2].getText();
 
-            String s6 = tf6.getText();
+            String s6 = tf[2].getText();
 
             int v5 = Integer.parseInt(s5);
 
@@ -281,9 +274,9 @@ public class GraficoTarta extends JFrame {
 
             //Gráfico de Saxofones
 
-            String s7 = tf7.getText();
+            String s7 = stock[3].getText();
 
-            String s8 = tf8.getText();
+            String s8 = tf[3].getText();
 
             int v7 = Integer.parseInt(s7);
 
@@ -315,9 +308,9 @@ public class GraficoTarta extends JFrame {
 
             //Grafico de Clarinetes
 
-            String s9 = tf9.getText();
+            String s9 = stock[4].getText();
 
-            String s10 = tf10.getText();
+            String s10 = tf[4].getText();
 
             int v9 = Integer.parseInt(s9);
 
@@ -348,7 +341,8 @@ public class GraficoTarta extends JFrame {
 
             //resumen
 
-            int total = v1+v2+v3+v4+v5+v6+v7+v8+v9+v10;
+            int total = v1+v3+v5+v7+v9;
+
             int disponibles = (disponibleS+disponibleB+disponibleC+disponibleG+disponibleV);
             int ocupados = total-disponibles;
 
@@ -372,6 +366,7 @@ public class GraficoTarta extends JFrame {
 
             g.drawString("Ocupados: "+ocupados, 800, 460);
 
+            g.drawString("Instrumentos totales: "+total,800, 490);
         }
     }
 }
