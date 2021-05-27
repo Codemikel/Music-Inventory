@@ -172,22 +172,34 @@ public class GraficoTarta extends JFrame {
 
         if (bandera == true) {
 
+            String s[] = new String[10];
+
+            int v[] = new int[10];
+
+            //asignando a s el valor de stock
+            for (int i = 0; i < stock.length; i++) {
+                s[i] = stock[i].getText();
+                System.out.println(i+" :"+ s[i]);
+            }
+            int m=0;
+            for (int j = 5; j < 10; j++) {
+                s[j] = tf[m].getText();
+                System.out.println(s[j]+"="+j+" "+m);
+                m++;
+            }
+
+            //asignando s a v
+            for (int i = 0; i <10 ; i++) {
+                v[i]= Integer.parseInt(s[i]);
+                System.out.println(v[i]);
+            }
+
             //Gráfico de Guitarras
+            int disponibleG = v[0] - v[5];
 
-            String s1 = stock[0].getText();
+            int grados1 = disponibleG * 360 / v[0];
 
-            String s2 = tf[0].getText();
-
-            int v1 = Integer.parseInt(s1);
-
-            int v2 = Integer.parseInt(s2);
-
-            int disponibleG = v1 - v2;
-
-            int grados1 = disponibleG * 360 / v1;
-
-            int grados2 = v2 * 360 / v1;
-
+            int grados2 = v[5] * 360 / v[0];
 
             g.setColor(new Color(4, 17, 137));
 
@@ -208,19 +220,11 @@ public class GraficoTarta extends JFrame {
 
             //Grafico de Bajos
 
-            String s3 = stock[1].getText();
+            int disponibleB = v[1] - v[6];
 
-            String s4 = tf[1].getText();
+            int grados3 = disponibleB * 360 / v[1];
 
-            int v3 = Integer.parseInt(s3);
-
-            int v4 = Integer.parseInt(s4);
-
-            int disponibleB = v3 - v4;
-
-            int grados3 = disponibleB * 360 / v3;
-
-            int grados4 = v4 * 360 / v3;
+            int grados4 = v[6] * 360 / v[1];
 
             g.setColor(new Color(0, 130, 11));
 
@@ -241,19 +245,11 @@ public class GraficoTarta extends JFrame {
 
             //Gráfico violines
 
-            String s5 = stock[2].getText();
+            int disponibleV = v[2] - v[7];
 
-            String s6 = tf[2].getText();
+            int grados5 = disponibleV * 360 / v[2];
 
-            int v5 = Integer.parseInt(s5);
-
-            int v6 = Integer.parseInt(s6);
-
-            int disponibleV = v5 - v6;
-
-            int grados5 = disponibleV * 360 / v5;
-
-            int grados6 = v6 * 360 / v5;
+            int grados6 = v[7] * 360 / v[2];
 
             g.setColor(new Color(238, 255, 0));
 
@@ -274,19 +270,11 @@ public class GraficoTarta extends JFrame {
 
             //Gráfico de Saxofones
 
-            String s7 = stock[3].getText();
+            int disponibleS = v[3] - v[8];
 
-            String s8 = tf[3].getText();
+            int grados7 = disponibleS * 360 / v[3];
 
-            int v7 = Integer.parseInt(s7);
-
-            int v8 = Integer.parseInt(s8);
-
-            int disponibleS = v7 - v8;
-
-            int grados7 = disponibleS * 360 / v7;
-
-            int grados8 = v8 * 360 / v7;
+            int grados8 = v[8] * 360 / v[3];
 
 
             g.setColor(new Color(137, 4, 119));
@@ -308,19 +296,11 @@ public class GraficoTarta extends JFrame {
 
             //Grafico de Clarinetes
 
-            String s9 = stock[4].getText();
+            int disponibleC = v[4] - v[9];
 
-            String s10 = tf[4].getText();
+            int grados9 = disponibleC * 360 / v[4];
 
-            int v9 = Integer.parseInt(s9);
-
-            int v10 = Integer.parseInt(s10);
-
-            int disponibleC = v9 - v10;
-
-            int grados9 = disponibleC * 360 / v9;
-
-            int grados10 = v10 * 360 / v9;
+            int grados10 = v[9] * 360 / v[4];
 
             g.setColor(new Color(255, 114, 0));
 
@@ -341,9 +321,12 @@ public class GraficoTarta extends JFrame {
 
             //resumen
 
-            int total = v1+v3+v5+v7+v9;
+            int total = 0;
+            for (int i = 5; i < 9; i++) {
+                total=total+v[i];
+            }
 
-            int disponibles = (disponibleS+disponibleB+disponibleC+disponibleG+disponibleV);
+            int disponibles = disponibleG+disponibleB+disponibleV+disponibleS+disponibleC;
             int ocupados = total-disponibles;
 
             int gradosO = ocupados*360/total;
@@ -351,7 +334,7 @@ public class GraficoTarta extends JFrame {
 
             g.setColor(new Color(0, 92, 65));
 
-            g.fillArc(650, 400, 100, 100, 0, gradosO);
+            g.fillArc(650, 400, 100, 100, 0, gradosD);
 
             g.fillRect(770, 420, 20, 20);
 
@@ -360,11 +343,13 @@ public class GraficoTarta extends JFrame {
 
             g.setColor(new Color(0, 121, 77));
 
-            g.fillArc(650, 400, 100, 100, gradosO, gradosD);
+            g.fillArc(650, 400, 100, 100, gradosD, gradosO);
 
             g.fillRect(770, 450, 20, 20);
 
             g.drawString("Ocupados: "+ocupados, 800, 460);
+
+            g.setColor(new Color(7, 114, 196));
 
             g.drawString("Instrumentos totales: "+total,800, 490);
         }
