@@ -3,7 +3,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 
 public class GraficoTarta extends JFrame {
     private JPanel contentPane;
@@ -27,10 +26,8 @@ public class GraficoTarta extends JFrame {
 
     public GraficoTarta() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBackground(Color.orange);
         setTitle("Inventario de Instrumentos");
         setBounds(100, 100, 1100, 700);
-        setIconImage(new ImageIcon(getClass().getResource("Tulevik.jpg")).getImage());
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -179,20 +176,20 @@ public class GraficoTarta extends JFrame {
             //asignando a s el valor de stock
             for (int i = 0; i < stock.length; i++) {
                 s[i] = stock[i].getText();
-                System.out.println(i+" :"+ s[i]);
             }
             int m=0;
             for (int j = 5; j < 10; j++) {
                 s[j] = tf[m].getText();
-                System.out.println(s[j]+"="+j+" "+m);
                 m++;
             }
 
             //asignando s a v
             for (int i = 0; i <10 ; i++) {
                 v[i]= Integer.parseInt(s[i]);
-                System.out.println(v[i]);
             }
+
+            g.setColor(new Color(255, 0, 6));
+
 
             //Gráfico de Guitarras
             int disponibleG = v[0] - v[5];
@@ -201,22 +198,30 @@ public class GraficoTarta extends JFrame {
 
             int grados2 = v[5] * 360 / v[0];
 
-            g.setColor(new Color(4, 17, 137));
+            if(v[5]>v[0]){
+                JOptionPane.showMessageDialog(null, "ERROR "+v[5]+" can't be greater than "+v[0]);
+                disponibleG = 0;
+                g.drawString("Error ", 50, 150);
+            }else{
 
-            g.fillArc(50, 100, 100, 100, 0, grados1);
+                g.setColor(new Color(4, 17, 137));
 
-            g.fillRect(170, 120, 20, 20);
+                g.fillArc(50, 100, 100, 100, 0, grados1);
 
-            g.drawString("Disponibles: "+disponibleG, 200, 130);
+                g.fillRect(170, 120, 20, 20);
+
+                g.drawString("Disponibles: "+disponibleG, 200, 130);
 
 
-            g.setColor(new Color(77, 120, 250));
+                g.setColor(new Color(77, 120, 250));
 
-            g.fillArc(50, 100, 100, 100, grados1, grados2);
+                g.fillArc(50, 100, 100, 100, grados1, grados2);
 
-            g.fillRect(170, 150, 20, 20);
+                g.fillRect(170, 150, 20, 20);
 
-            g.drawString("Ocupadas", 200, 160);
+                g.drawString("Ocupadas", 200, 160);
+            }
+
 
             //Grafico de Bajos
 
@@ -226,22 +231,31 @@ public class GraficoTarta extends JFrame {
 
             int grados4 = v[6] * 360 / v[1];
 
-            g.setColor(new Color(0, 130, 11));
+            g.setColor(new Color(255, 0, 6));
 
-            g.fillArc(350, 100, 100, 100, 0, grados3);
+            if(v[6]>v[1]){
+                JOptionPane.showMessageDialog(null, "ERROR "+v[6]+" can't be greater than "+v[1]);
+                disponibleB = 0;
+                g.drawString("Error ", 350, 150);
+            }else{
 
-            g.fillRect(470, 120, 20, 20);
+                g.setColor(new Color(0, 130, 11));
 
-            g.drawString("Disponibles: "+disponibleB, 500, 130);
+                g.fillArc(350, 100, 100, 100, 0, grados3);
+
+                g.fillRect(470, 120, 20, 20);
+
+                g.drawString("Disponibles: "+disponibleB, 500, 130);
 
 
-            g.setColor(new Color(140, 232, 141));
+                g.setColor(new Color(140, 232, 141));
 
-            g.fillArc(350, 100, 100, 100, grados3, grados4);
+                g.fillArc(350, 100, 100, 100, grados3, grados4);
 
-            g.fillRect(470, 150, 20, 20);
+                g.fillRect(470, 150, 20, 20);
 
-            g.drawString("Ocupadas", 500, 160);
+                g.drawString("Ocupadas", 500, 160);
+            }
 
             //Gráfico violines
 
@@ -251,22 +265,31 @@ public class GraficoTarta extends JFrame {
 
             int grados6 = v[7] * 360 / v[2];
 
-            g.setColor(new Color(238, 255, 0));
+            g.setColor(new Color(255, 0, 6));
 
-            g.fillArc(650, 100, 100, 100, 0, grados5);
+            if(v[7]>v[2]) {
+                JOptionPane.showMessageDialog(null, "ERROR " + v[7] + " can't be greater than " + v[2]);
+                disponibleV = 0;
+                g.drawString("Error ", 650, 150);
+            }else{
 
-            g.fillRect(770, 120, 20, 20);
+                g.setColor(new Color(238, 255, 0));
 
-            g.drawString("Disponibles: "+disponibleV, 800, 130);
+                g.fillArc(650, 100, 100, 100, 0, grados5);
+
+                g.fillRect(770, 120, 20, 20);
+
+                g.drawString("Disponibles: "+disponibleV, 800, 130);
 
 
-            g.setColor(new Color(255, 250, 127));
+                g.setColor(new Color(255, 250, 127));
 
-            g.fillArc(650, 100, 100, 100, grados5, grados6);
+                g.fillArc(650, 100, 100, 100, grados5, grados6);
 
-            g.fillRect(770, 150, 20, 20);
+                g.fillRect(770, 150, 20, 20);
 
-            g.drawString("Ocupadas", 800, 160);
+                g.drawString("Ocupadas", 800, 160);
+            }
 
             //Gráfico de Saxofones
 
@@ -276,23 +299,31 @@ public class GraficoTarta extends JFrame {
 
             int grados8 = v[8] * 360 / v[3];
 
+            g.setColor(new Color(255, 0, 6));
 
-            g.setColor(new Color(137, 4, 119));
+            if(v[8]>v[3]){
+                JOptionPane.showMessageDialog(null, "ERROR "+v[8]+" can't be greater than "+v[3]);
+                disponibleS = 0;
+                g.drawString("Error ", 50, 450);
+            }else{
 
-            g.fillArc(50, 400, 100, 100, 0, grados7);
+                g.setColor(new Color(137, 4, 119));
 
-            g.fillRect(170, 420, 20, 20);
+                g.fillArc(50, 400, 100, 100, 0, grados7);
 
-            g.drawString("Disponibles: "+disponibleS, 200, 430);
+                g.fillRect(170, 420, 20, 20);
+
+                g.drawString("Disponibles: "+disponibleS, 200, 430);
 
 
-            g.setColor(new Color(189, 77, 250));
+                g.setColor(new Color(189, 77, 250));
 
-            g.fillArc(50, 400, 100, 100, grados7, grados8);
+                g.fillArc(50, 400, 100, 100, grados7, grados8);
 
-            g.fillRect(170, 450, 20, 20);
+                g.fillRect(170, 450, 20, 20);
 
-            g.drawString("Ocupadas", 200, 460);
+                g.drawString("Ocupadas", 200, 460);
+            }
 
             //Grafico de Clarinetes
 
@@ -302,27 +333,37 @@ public class GraficoTarta extends JFrame {
 
             int grados10 = v[9] * 360 / v[4];
 
-            g.setColor(new Color(255, 114, 0));
+            g.setColor(new Color(255, 0, 6));
 
-            g.fillArc(350, 400, 100, 100, 0, grados9);
+            if(v[9]>v[4]){
+                JOptionPane.showMessageDialog(null, "ERROR "+v[9]+" can't be greater than "+v[4]);
+                disponibleC = 0;
+                g.drawString("Error ", 350, 450);
+            }else{
 
-            g.fillRect(470, 420, 20, 20);
+                g.setColor(new Color(255, 114, 0));
 
-            g.drawString("Disponibles: "+disponibleC, 500, 430);
+                g.fillArc(350, 400, 100, 100, 0, grados9);
+
+                g.fillRect(470, 420, 20, 20);
+
+                g.drawString("Disponibles: "+disponibleC, 500, 430);
 
 
-            g.setColor(new Color(255, 156, 88));
+                g.setColor(new Color(255, 156, 88));
 
-            g.fillArc(350, 400, 100, 100, grados9, grados10);
+                g.fillArc(350, 400, 100, 100, grados9, grados10);
 
-            g.fillRect(470, 450, 20, 20);
+                g.fillRect(470, 450, 20, 20);
 
-            g.drawString("Ocupadas", 500, 460);
+                g.drawString("Ocupadas", 500, 460);
+            }
+
 
             //resumen
 
             int total = 0;
-            for (int i = 5; i < 9; i++) {
+            for (int i = 0; i < 5; i++) {
                 total=total+v[i];
             }
 
